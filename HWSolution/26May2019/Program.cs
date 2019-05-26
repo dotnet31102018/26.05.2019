@@ -28,6 +28,7 @@ namespace _26May2019
             GameViewer viewer = new GameViewer();
 
             game.GoodSpaceShipLocationChanged += viewer.GoodSpaceShipLocationChangedEventHandler;
+            game.GoodSpaceShipHPChanged += viewer.GoodSpaceShipHPChangedEventHandler;
 
             game.MoveSpaceShip(10, 15);
 

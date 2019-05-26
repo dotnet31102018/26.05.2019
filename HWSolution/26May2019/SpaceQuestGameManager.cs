@@ -16,6 +16,8 @@ namespace _26May2019
 
         public event EventHandler<LocationEventArgs> GoodSpaceShipLocationChanged;
 
+        public event EventHandler<PointEventArgs> GoodSpaceShipHPChanged;
+
         public SpaceQuestGameManager(int goodSpaceShipHitPoint, int shipXLocation, int shipYLocation, int numberOfBadShips)
         {
             _goodSpaceShipHitPoint = goodSpaceShipHitPoint;
@@ -35,11 +37,31 @@ namespace _26May2019
             }
         }
 
+        private void OnGoodSpaceShipHPChanged()
+        {
+            if (GoodSpaceShipHPChanged != null)
+            {
+                GoodSpaceShipHPChanged.Invoke(this, new PointEventArgs { HitPoint = _goodSpaceShipHitPoint });
+            }
+        }
+
         public void MoveSpaceShip(int newX, int newY)
         {
             _shipXLocation = newX;
             _shipYLocation = newY;
             OnGoodSpaceShipLocationChanged();
+        }
+
+        public void GoodSpaceShipGotExtraHP(int extra)
+        {
+            _goodSpaceShipHitPoint += extra;
+            OnGoodSpaceShipHPChanged();
+        }
+
+        public void GoodSpaceShipGotDamaged(int damage)
+        {
+            _goodSpaceShipHitPoint -= damage;
+            OnGoodSpaceShipHPChanged();
         }
     }
 }

@@ -12,5 +12,10 @@ namespace _26May2019
         {
             Console.WriteLine($"GameViewer is drawing the ship after movement to new location X:{e.X} Y:{e.Y}");
         }
+
+        public void GoodSpaceShipHPChangedEventHandler(object sender, PointEventArgs e)
+        {
+            Console.WriteLine($"GameViewer is drawing the ship after Hp Changed...  HP:{e.HitPoint}");
+        }
     }
 }
